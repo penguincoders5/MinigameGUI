@@ -1,0 +1,37 @@
+--Define all the components we need
+StartEvent = game.ReplicatedStorage:WaitForChild("StartEvent")
+EndEvent = game.ReplicatedStorage:WaitForChild("EndEvent")
+local CountDown = script.Parent.ScreenGui.CountDown
+local Winner = script.Parent.ScreenGui.Winner
+
+--Displays a countdown when a game starts
+local function countDown()
+	CountDown.Visible = true
+	--Count down from 3 to 1
+	for count = 3, 1, -1 do
+		CountDown.Text = count
+		wait(1)
+	end
+	CountDown.Text =  ----- U HAVE TO CODE HERE
+	wait(2)
+	CountDown.Visible = false
+end
+
+--Displays who won when someone wins a game
+--Takes a player (the winner) as an argument
+local function endGame(player)
+	Winner.Visible = true
+	--Check if someone won, or if the function was passed nothing
+	if player then
+		Winner.Text = player.Name ..  -- PUT YOUR CODE HERE!
+	else
+		Winner.Text = --CODE HERE
+	end
+	wait(5)
+	Winner.Visible = false
+end
+
+--Connect the functions to when each event fires for this Client
+StartEvent.OnClientEvent:Connect(countDown)
+EndEvent.OnClientEvent:Connect(endGame)
+
